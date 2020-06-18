@@ -21,6 +21,8 @@ float movementX = 0f;
 int extraJumps;
 bool isGrounded = false;
 
+public bool isFacingRight = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,8 +39,17 @@ bool isGrounded = false;
     {
     extraJumps = extraJumpsValue;
     }
-    
     movementX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
+    
+    
+    if (movementX < 0)
+    {
+    transform.localScale = new Vector3(-1, 1, 1);
+    isFacingRight = false;
+    } else {
+    transform.localScale = new Vector3(1, 1, 1);
+    isFacingRight = true;
+    }
     if (Input.GetKeyDown("space") && extraJumps > 0)
     {
     Jump();

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class GunContainer
 {
-public static readonly Gun shotgun = new Gun(3f, 9, 5, 5f, 3, "Shotgun");
+public static readonly Gun pistol = new Gun(3f, 9, 5, 1f, 3, "Pistol");
 }

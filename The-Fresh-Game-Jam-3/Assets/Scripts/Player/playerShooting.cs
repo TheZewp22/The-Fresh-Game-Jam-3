@@ -6,7 +6,7 @@ public class playerShooting : MonoBehaviour
 {
 float ammoCount;
 float ammo;
-Gun shotgun;
+Gun pistol;
 
 
 [SerializeField]
@@ -15,8 +15,8 @@ GameObject bullet;
 Transform firePoint;
     void Start()
     {
-    shotgun = GunContainer.shotgun;
-    ammoCount = shotgun.GetBullets();
+    pistol = GunContainer.pistol;
+    ammoCount = pistol.GetBullets();
     ammo = ammoCount;
     }
 
@@ -29,7 +29,7 @@ Transform firePoint;
     }
     if (Input.GetKeyDown("r"))
     {
-    Invoke("Reload", shotgun.GetSpeed());
+    Invoke("Reload", pistol.GetReloadSpeed());
     }
 
     }
