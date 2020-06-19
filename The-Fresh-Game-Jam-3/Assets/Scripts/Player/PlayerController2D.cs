@@ -61,7 +61,6 @@ public bool isFacingRight = true;
     }
     void Jump()
     {
-    Debug.Log(rb2d);
     if (isGrounded)
     {
     rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
