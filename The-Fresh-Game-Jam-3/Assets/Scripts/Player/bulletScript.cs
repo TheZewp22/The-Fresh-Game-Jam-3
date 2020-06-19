@@ -9,19 +9,21 @@ PlayerController2D controller;
 Rigidbody2D rb2d;
 Vector3 speed;
 
+float spread;
     // Start is called before the first frame update
     void Start()
     {
-    speed = new Vector2(Vector3.right.x + 10, 0);
     controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController2D>();
-    renderer = GetComponent<SpriteRenderer>();
+    spread = controller.GetComponent<playerShooting>().currentGun.GetSpread();
+   renderer = GetComponent<SpriteRenderer>();
+   speed = new Vector3(500, 0, 0);
     rb2d = GetComponent<Rigidbody2D>();
     if (controller.isFacingRight == true)
     {
-    rb2d.AddForce(speed, ForceMode2D.Impulse);
+    rb2d.AddForce(Vector3.right.x * speed);
     renderer.flipX = false;
     } else {
-    rb2d.AddForce(-speed, ForceMode2D.Impulse);
+    rb2d.AddForce(-Vector3.right.x * speed);
     renderer.flipX = true;
     }
     Destroy(gameObject, 10f);

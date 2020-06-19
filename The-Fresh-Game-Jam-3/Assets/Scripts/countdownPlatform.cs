@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class countdownPlatform : MonoBehaviour
 {
+BoxCollider2D collider2D;
+SpriteRenderer renderer;
 [SerializeField]
 float countdownDefault = 10f;
 [SerializeField]
-Sprite spikePlatform;
+Color red;
 [SerializeField]
-Sprite normalPlatform;
+Color normal;
+bool isOn = true;
 
 
 
@@ -20,6 +23,8 @@ float countdown;
     void Start()
     {
     countdown = countdownDefault;
+    renderer = GetComponent<SpriteRenderer>();
+    collider2D = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -29,23 +34,23 @@ float countdown;
     {
     SwitchPlatform();
     countdown = countdownDefault;
+    Debug.Log("Switching!");
     } else {
     countdown -= Time.deltaTime;
+    Debug.Log("Time to change: " + countdown);
+    }
     }
     void SwitchPlatform()
     {
-    SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-    if (renderer.sprite == normalPlatform)
-    {
-    renderer.sprite = spikePlatform;
+    if (isOn == true) {
+    collider2D.enabled = false;
+    renderer.color = (red);
+    isOn = false;
     } else {
-    renderer.sprite = normalPlatform;
+    collider2D.enabled = true;
+    renderer.color = (normal);
+    isOn = true;
     }
-    
-    
-    }
-
-
 
     }
 }

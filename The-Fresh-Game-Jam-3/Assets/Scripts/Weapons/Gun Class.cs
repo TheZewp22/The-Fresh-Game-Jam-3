@@ -6,6 +6,7 @@ using UnityEngine;
 
 
 public class GunClass {
+
     private float fireRate;
     private float bullets;
     private float spread;
