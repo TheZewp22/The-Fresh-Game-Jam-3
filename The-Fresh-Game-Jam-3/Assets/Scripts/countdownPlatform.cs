@@ -12,6 +12,10 @@ float countdownDefault = 10f;
 Color red;
 [SerializeField]
 Color normal;
+[SerializeField]
+GameObject lightObject;
+Light light;
+
 bool isOn = true;
 
 
@@ -25,6 +29,7 @@ float countdown;
     countdown = countdownDefault;
     renderer = GetComponent<SpriteRenderer>();
     collider2D = GetComponent<BoxCollider2D>();
+    light = lightObject.GetComponent<Light>();
     }
 
     // Update is called once per frame
@@ -34,10 +39,10 @@ float countdown;
     {
     SwitchPlatform();
     countdown = countdownDefault;
-    Debug.Log("Switching!");
+
     } else {
     countdown -= Time.deltaTime;
-    Debug.Log("Time to change: " + countdown);
+
     }
     }
     void SwitchPlatform()
@@ -45,8 +50,10 @@ float countdown;
     if (isOn == true) {
     collider2D.enabled = false;
     renderer.color = (red);
+    light.color = (red);
     isOn = false;
     } else {
+    light.color = (normal);
     collider2D.enabled = true;
     renderer.color = (normal);
     isOn = true;
